@@ -61,4 +61,16 @@ RSpec.configure do |config|
   Capybara::Webkit.configure do |config|
       config.block_unknown_urls
   end
+
+  Shoulda::Matchers.configure do |config|
+    config.integrate do |with|
+      # Choose a test framework:
+      with.test_framework :rspec
+
+      # Or, choose the following (which implies all of the above):
+      with.library :rails
+    end
+  end
+
 end
+
