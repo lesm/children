@@ -21,6 +21,11 @@
   <div class="actions">
     <%= f.submit "Log in" %>
   </div>
+  
+  <div>
+    <li><%= link_to 'Registrarse con Facebook', '/auth/facebook' %></li>
+  </div>
+
 <% end %>
 
 <%= render "devise/shared/links" %>

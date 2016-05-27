@@ -3,4 +3,20 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+  
+  class << self
+    def from_omniauth(auth_hash)
+      binding.pry
+      user = find_or_create_by(uid: auth_hash['uid'], provider: auth_hash['provider'])
+      user.name = auth_hash['info']['name']
+      user.location = auth_hash['info']['location'] || 'Oaxaca de Juarez'
+      user.image_url = auth_hash['info']['image'] || 'www.image.com'
+      user.url = "www.#{auth_hash['provider']}.com"
+      user.email = auth_hash['info']['email'] || "email@gmail.com"
+      user.password = Devise.friendly_token[0,20] 
+      user.save!
+      user
+    end
+  end
+
 end

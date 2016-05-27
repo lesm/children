@@ -1,1 +1,15 @@
-<h1>Página de inicio</h1>
+<div>
+  <% if current_user_social %>
+    <h1>Informacion personal</h1>
+    <ul>
+      <li><strong>Name:</strong> <%= current_user_social.name %></li>
+      <li><strong>Provider:</strong> <%= current_user_social.provider %></li>
+      <li><strong>UID:</strong> <%= current_user_social.uid %></li>
+      <li><strong>Location:</strong> <%= current_user_social.location %></li>
+      <li><strong>Avatar URL:</strong> <%= current_user_social.image_url %></li>
+      <li><strong>URL:</strong> <%= current_user_social.url %></li>
+    </ul>
+  <% else %>
+    <h1>Necesitas Registrarte o Inicial Sesión</h1>
+  <% end %>
+</div>
