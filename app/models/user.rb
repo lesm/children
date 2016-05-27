@@ -6,7 +6,6 @@ class User < ActiveRecord::Base
   
   class << self
     def from_omniauth(auth_hash)
-      binding.pry
       user = find_or_create_by(uid: auth_hash['uid'], provider: auth_hash['provider'])
       user.name = auth_hash['info']['name']
       user.location = auth_hash['info']['location'] || 'Oaxaca de Juarez'

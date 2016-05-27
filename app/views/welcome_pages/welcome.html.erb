@@ -9,7 +9,8 @@
       <li><strong>Avatar URL:</strong> <%= current_user_social.image_url %></li>
       <li><strong>URL:</strong> <%= current_user_social.url %></li>
     </ul>
+  <% elsif current_user %>
   <% else %>
-    <h1>Necesitas Registrarte o Inicial Sesión</h1>
+    <h1>Necesitas Registrarte o Iniciar Sesión</h1>
   <% end %>
 </div>
