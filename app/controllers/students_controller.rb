@@ -1,6 +1,6 @@
 class StudentsController < ApplicationController
-  before_action :autentica_usuario!
-  before_action :set_teacher
+  before_action :autentica_usuario!, except: :get_student
+  before_action :set_teacher, except: :get_student
   before_action :set_student, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -25,6 +25,20 @@ class StudentsController < ApplicationController
     @student.destroy
 
     redirect_to user_path @teacher
+  end
+
+  def get_student
+    @user = Student.where(name: params[:username]).where(password: params[:password]).first
+    respond_to do |format|
+      format.xml { render xml: @user }
+      format.json { render json: @user }
+      format.text { if @user
+                      render text: 'ok'
+                    else
+                      render text: 'Sin acceso'
+                    end
+                  }
+              end
   end
 
 private

@@ -12,6 +12,9 @@ Rails.application.routes.draw do
 
   delete '/logout', to: 'sessions#destroy'
 
+  get '/users/authentication', to: 'students#get_student'
+  post '/users/authentication', to: 'students#get_student'
+
   resources :users do
     resources :students
   end
