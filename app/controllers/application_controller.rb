@@ -9,5 +9,13 @@ private
     @current_user_social ||= User.find_by(id: session[:user_id])
   end
 
-  helper_method :current_user_social
+  def autentica_usuario!
+    unless user_signed_in? || current_user_social
+      flash[:notice] = "Por favor inicie sesión."
+      redirect_to new_user_session_path
+    end
+  end
+
+  helper_method :current_user_social, :autentica_usuario!
+
 end

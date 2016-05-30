@@ -1,0 +1,32 @@
+<div>
+  <%= form_for([@teacher,@student]) do |f| %>
+    <% if @student.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@student.errors.count, "error") %> El estudiante no se a podido guardar</h2>
+        <ul>
+          <% @student.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <p>
+      <%= f.label :name, 'Nombre' %><br>
+      <%= f.text_field :name %>
+    </p>
+
+    <p>
+      <%= f.label :age, 'Edad' %><br>
+      <%= f.number_field :age %>
+    </p>
+
+    <p>
+      <%= f.label :password, 'Contraseña' %><br>
+      <%= f.password_field :password %>
+    </p>
+
+    <p>
+      <%= f.submit %>
+    </p>
+  <% end %>
+</div>
