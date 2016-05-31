@@ -7,6 +7,9 @@ class StudentsController < ApplicationController
     @students = @teacher.students
   end
 
+  def show
+  end
+
   def new
     @teacher = User.find(params[:user_id])
     @student = @teacher.students.new
@@ -44,11 +47,11 @@ class StudentsController < ApplicationController
 private
 
   def students_params
-    params.require(:student).permit(:name, :age, :password)
+    params.require(:student).permit(:name, :age, :password, :avatar)
   end
 
   def set_student
-    @studen = @teacher.students.find(params[:id])
+    @student = @teacher.students.find(params[:id])
   end
 
   def set_teacher
