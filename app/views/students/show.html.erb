@@ -10,7 +10,7 @@
 </div>
 
 <div>
-  <p>Edad: <%= @student.age %></p>
+  <p>Edad: <%= Date.current.year - @student.birthdate.year %> años</p>
 </div>
 
 <div>
