@@ -9,7 +9,14 @@
       <li><strong>Avatar URL:</strong> <%= current_user_social.image_url %></li>
       <li><strong>URL:</strong> <%= current_user_social.url %></li>
     </ul>
+    <div class="col-md-10 pull-right">
+      <%= image_tag 'child.jpg' %>
+    </div>
   <% elsif current_user %>
+    <br/><br/>
+    <div class="col-md-10 pull-right">
+      <%= image_tag 'child.jpg' %>
+    </div>
   <% else %>
     <h1>Necesitas Registrarte o Iniciar Sesión</h1>
   <% end %>

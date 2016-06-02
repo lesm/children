@@ -1,4 +1,65 @@
-<div id="page_wrapper">
-  <h1>Nuevo Alumno</h1>
-  <%= render 'form' %>
+<h1>Nuevo Alumno</h1><br>
+
+<div class="form-horizontal">
+  <%= form_for([@teacher,@student]) do |f| %>
+    <% if @student.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@student.errors.count, "error") %> El estudiante no se a podido guardar</h2>
+        <ul>
+          <% @student.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class='form-group'>
+      <%= f.label :username, 'Username', class: "control-label col-sm-2" %>
+      <div class="col-sm-3">
+        <%= f.text_field :username, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class='form-group'>
+      <%= f.label :name, 'Nombre', class: "control-label col-sm-2" %><br>
+      <div class="col-sm-3">
+        <%= f.text_field :name, class: "form-control"  %>
+      </div>
+    </div>
+
+    <div class='form-group'>
+      <%= f.label :birthdate, 'Fecha de Nacimiento', class: "control-label col-sm-2" %><br>
+      <div class="col-sm-3">
+        <%= f.date_select(:birthdate, start_year: 2005, end_year: Date.current.year)%>
+      </div>
+    </div>
+
+    <div class='form-group'>
+      <%= f.label :password, 'Contraseña', class: "control-label col-sm-2" %><br>
+      <div class="col-sm-3">
+        <%= f.password_field :password, class: "form-control"  %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :password_confirmation, 'Confirmar Contraseña', class: "control-label col-sm-2" %><br />
+      <div class="col-sm-3">
+        <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control"  %>
+      </div>
+    </div>
+
+    <div class='form-group'>
+      <%= f.label :avatar, 'Foto', class: "control-label col-sm-2" %><br>
+      <div class="col-sm-3">
+        <%= f.file_field :avatar %>
+      </div>
+    </div>
+
+    <div class='form-group'>
+      <div class="col-sm-10 pull-right">
+        <%= f.submit "Agrega", class: 'btn btn-success' %>&nbsp;
+        <%= link_to "Regresar", root_path, class: 'btn btn-info' %>
+      </div>
+    </div>
+
+  <% end %>
 </div>

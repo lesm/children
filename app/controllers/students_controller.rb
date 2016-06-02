@@ -16,7 +16,7 @@ class StudentsController < ApplicationController
   end
 
   def create
-    @student = @teacher.students.new(students_params)
+    @student = @teacher.students.new(student_params)
     if @student.save
       redirect_to root_path
     else
@@ -24,10 +24,26 @@ class StudentsController < ApplicationController
     end
   end
 
+  def edit_password
+    @student = @teacher.students.find(params[:student_id])
+  end
+
+  def update
+    if @student.update(student_params)
+      redirect_to user_student_path(@teacher, @student)
+    else
+      if params[:student].count == 2
+        render 'edit_password'
+      else
+        render 'edit'
+      end
+    end  
+  end
+
   def destroy
     @student.destroy
 
-    redirect_to user_path @teacher
+    redirect_to user_students_path @teacher
   end
 
   def get_student
@@ -46,8 +62,8 @@ class StudentsController < ApplicationController
 
 private
 
-  def students_params
-    params.require(:student).permit(:name, :birthdate, :password, :avatar, :username)
+  def student_params
+    params.require(:student).permit(:name, :birthdate, :password, :avatar, :username, :password_confirmation)
   end
 
   def set_student

@@ -16,7 +16,10 @@ Rails.application.routes.draw do
   post '/users/authentication', to: 'students#get_student'
 
   resources :users do
-    resources :students
+    resources :students do 
+      get 'edit_password', to: :edit_password
+      put 'change_password', to: :change_password
+    end
   end
 
   # Example of regular route:

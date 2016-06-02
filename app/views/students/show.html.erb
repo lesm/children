@@ -16,3 +16,10 @@
 <div>
   <p>Número de intentos: </p>
 </div>
+
+<div>
+   <%= link_to 'Editar', edit_user_student_path(@teacher, @student), class: 'btn btn-success' %>
+   <%= link_to 'Cambiar Contraseña', user_student_edit_password_path(@teacher, @student), class: 'btn btn-success' %>
+   <%= link_to 'Eliminar', [@teacher, @student], class: 'btn btn-danger', method: :delete, data: { confirm: '¿Estás seguro?' } %>
+</div>
+
