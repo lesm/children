@@ -47,7 +47,7 @@ class StudentsController < ApplicationController
   end
 
   def get_student
-    @user = Student.where(name: params[:username]).where(password: params[:password]).first
+    @user = Student.where(name: params[:username]).where(password_digest: params[:password]).first
     respond_to do |format|
       format.xml { render xml: @user }
       format.json { render json: @user }
