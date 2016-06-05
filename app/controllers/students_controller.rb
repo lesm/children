@@ -18,7 +18,7 @@ class StudentsController < ApplicationController
   def create
     @student = @teacher.students.new(student_params)
     if @student.save
-      redirect_to root_path
+      redirect_to root_path, notice: 'El alumno fue creado exitosamente.'
     else
       render 'new'
     end
@@ -30,7 +30,7 @@ class StudentsController < ApplicationController
 
   def update
     if @student.update(student_params)
-      redirect_to user_student_path(@teacher, @student)
+      redirect_to user_student_path(@teacher, @student), notice: 'El alumno fue actualizado correctamente'
     else
       if params[:student].count == 2
         render 'edit_password'
@@ -43,18 +43,18 @@ class StudentsController < ApplicationController
   def destroy
     @student.destroy
 
-    redirect_to user_students_path @teacher
+    redirect_to user_students_path @teacher, notice: 'El alumno fue aliminado exitosamente'
   end
 
   def get_student
-    @user = Student.where(name: params[:username]).where(password_digest: params[:password]).first
+    @user = Student.where(username: params[:username]).first
     respond_to do |format|
       format.xml { render xml: @user }
       format.json { render json: @user }
       format.text { if @user
-                      render text: 'ok'
+                      render text: 'OK'
                     else
-                      render text: 'Sin acceso'
+                      render text: 'SIN ACCESO'
                     end
                   }
               end
