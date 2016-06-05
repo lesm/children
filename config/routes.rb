@@ -17,8 +17,8 @@ Rails.application.routes.draw do
 
   resources :users do
     resources :students do 
-      get 'edit_password', to: :edit_password
-      put 'change_password', to: :change_password
+      get 'edit_password', :edit_password
+      put 'change_password', :change_password
     end
   end
 
